@@ -1,0 +1,383 @@
+/* style.css (Paleta Vocação: Laranja #FF6633 e Azul Escuro #003366) */
+
+/* 1. Reset Básico e Fundo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* 2. Header */
+.main-header {
+    background-color: #003366; /* Azul Escuro */
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-text {
+    font-size: 1.8em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.main-header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.main-header nav a:hover {
+    background-color: rgba(255, 102, 51, 0.5); /* Laranja com transparência */
+}
+
+/* 3. Container Principal e Título */
+.container {
+    max-width: 1200px; /* Mais largo para o layout */
+    margin: 30px auto; 
+    padding: 0 20px;
+}
+
+.section-title {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 4. Barra de Logos */
+.logo-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #e6f0ff; /* Fundo azul claro */
+    border-radius: 8px;
+}
+
+.logo-image-localiza {
+    max-height: 40px;
+    width: auto;
+    margin: 0 15px;
+    position: relative;
+    left: 1000px;
+    top: 10px;
+}
+
+.logo-image-vocacao {
+    max-height: 40px;
+    width: auto;
+    margin: 0 15px;
+    position: relative;
+    left: 800px;
+    top: 10px;
+}
+
+.plus-sign {
+    font-size: 2em;
+    color: #FF6633; /* Laranja de destaque */
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+/* 5. Layout de Colunas (Content Wrapper) */
+.content-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.booking-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    flex: 1; /* Ocupa a primeira coluna */
+}
+
+.right-column-content {
+    flex: 2; /* Faz a coluna direita ser o dobro do tamanho da esquerda */
+}
+
+.booking-form h3 {
+    color: #003366;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* Campos de Formulário */
+label { display: block; margin-top: 15px; font-weight: 600; color: #495057; }
+input[type="date"], select {
+    width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #ced4da;
+    border-radius: 6px; box-sizing: border-box; font-size: 1em;
+}
+
+/* Botão Primário (Laranja de Ação) */
+.btn-primary {
+    background-color: #02096d; 
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 30px;
+}
+.btn-primary:hover { background-color: #1b6d02; }
+
+/* 6. Car Cards (Visualização de Carros) */
+.car-options-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 25px;
+    padding: 25px 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+/* Título ocupa a largura total */
+.car-options-bar h3 {
+    width: 100%;
+    color: #003366;
+    font-size: 1.4em;
+    font-weight: 700;
+    border-bottom: 2px solid #e3e3e3;
+    padding-bottom: 8px;
+    margin: 0 0 20px 0;
+}
+
+/* CARD */
+.car-card {
+    background-color: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    transition: 
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    
+    /* Desktop 2 colunas */
+    flex: 0 0 calc(50% - 15px);
+}
+
+/* Hover profissional */
+.car-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    border-color: #1a6d05;
+}
+
+/* Quando selecionado */
+.car-card.selected {
+    border-color: #FF6633;
+    background-color: #fff6f1;
+    box-shadow: 0 8px 18px rgba(255, 102, 51, 0.15);
+}
+
+/* Estilo das imagens */
+.car-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+}
+
+/* Título e preço */
+.car-card h4 {
+    color: #003366;
+    font-size: 1.2em;
+    margin-bottom: 6px;
+}
+
+.car-card p {
+    font-size: 1em;
+    color: #1c6805;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+/* --- ADIÇÕES: listas de disponibilidade e estados --- */
+
+/* Lista simples usada no resultado */
+.lista-carros {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Itens de lista */
+.carro-disponivel {
+    color: #0a7d2a; /* verde */
+    background: linear-gradient(90deg, rgba(10,125,42,0.04), transparent);
+    border-left: 4px solid #0a7d2a;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(10,125,42,0.04);
+}
+
+.carro-indisponivel {
+    color: #c62828; /* vermelho */
+    background: linear-gradient(90deg, rgba(198,40,40,0.04), transparent);
+    border-left: 4px solid #c62828;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(198,40,40,0.04);
+}
+
+.sem-item {
+    color: #6c757d;
+    font-style: italic;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    border: 1px dashed #e9ecef;
+}
+
+/* --- Esmaecer / destacar os car-cards com base na disponibilidade --- */
+/* Para usar isso você pode adicionar/remover as classes `.disponivel` e `.indisponivel` no JS */
+
+/* Card indisponível: mais opaco / sem destaque*/
+.car-card.indisponivel {
+    opacity: 0.45;
+    pointer-events: none; /* evita clique se quiser bloquear interação */
+    filter: grayscale(30%);
+    transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Card disponível: leve realce */
+.car-card.disponivel {
+    transform: translateY(-4px);
+    border-color: #0a7d2a; /* verde para disponível quando quiser destacar */
+    box-shadow: 0 12px 30px rgba(10,125,42,0.08);
+}
+
+/* Badge (pequeno selo) para colocar no canto do card se quiser mostrar texto "Livre"/"Ocupado" */
+.car-card .status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 8px;
+    font-size: 0.8em;
+    border-radius: 999px;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* cores para o badge */
+.car-card .status-badge.disponivel { background-color: #0a7d2a; }
+.car-card .status-badge.indisponivel { background-color: #c62828; }
+
+/* torna o container relativo para posicionamento do badge */
+.car-card { position: relative; }
+
+/* --- Ajustes de acessibilidade / contraste para resultado --- */
+.resultado-box {
+    outline: none;
+}
+
+/* foco visível nos itens interativos */
+.car-card:focus {
+    box-shadow: 0 0 0 4px rgba(0, 51, 102, 0.12);
+    outline: none;
+}
+
+/* 7. Resultados */
+.resultado-box {
+    margin-top: 20px;
+    background-color: #e9f7ef; /* Fundo levemente verde/claro de destaque */
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #c3e6cb;
+}
+
+.resultado-box h3 {
+    color: #003366; 
+    border-bottom: 2px solid #FF6633;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.final-price {
+    font-size: 1.8em;
+    color: #d9534f; /* Um vermelho/laranja escuro para ênfase no preço */
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    border: 3px dashed #FF6633;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+#fatoresLista li {
+    background-color: #f0f7ff; 
+    margin: 6px 0;
+    padding: 10px;
+    border-left: 4px solid #003366;
+    border-radius: 3px;
+    font-size: 0.95em;
+}
+
+.car-card.indisponivel {
+    opacity: 0.4;
+    pointer-events: none;
+    filter: grayscale(100%);
+}
+
+.car-card.hidden {
+    display: none;
+}
+
+
+
+/* Tablet 2 colunas */
+@media (max-width: 900px) {
+    .car-card {
+        flex: 0 0 calc(50% - 15px);
+    }
+}
+
+/* Mobile 1 coluna */
+@media (max-width: 600px) {
+    .car-card {
+        flex: 0 0 100%;
+    }
+}
+
+/* Ajustes finos para mobile: alinhar resultado abaixo dos cards se necessário */
+@media (max-width: 600px) {
+    .content-wrapper {
+        flex-direction: column;
+        gap: 18px;
+    }
+    .right-column-content { order: 2; }
+    .booking-form { order: 1; }
+}
+
+/* Pequeno utilitário para ocultar elementos sem destruí-los do fluxo (p/ JS) */
+.u-hidden { display: none !important; }

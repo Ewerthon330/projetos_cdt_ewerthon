@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Localiza Vocação - Simulador de Preços</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <span class="logo-text">VOCALIZA</span>
+            <img src="img/logo_localiza.png" alt="Logo Localiza" class="logo-image-localiza" />
+            <img src="img/logo_vocacao.jpg" alt="Logo Vocação" class="logo-image-vocacao" />
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="section-title">Encontre seu Carro Ideal e Simule o Preço</h1>
+
+        <div class="content-wrapper">
+            <!-- Coluna Esquerda: Formulário -->
+            <form id="reservaForm" class="booking-form" aria-label="Formulário de simulação de reserva">
+                <h3>Simulação</h3>
+
+                <label for="categoria">Categoria</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Selecione a categoria</option>
+
+                    <option value="CE">CE - Econômico Especial</option>
+                    <option value="B">B - Compacto</option>
+                    <option value="CS">CS - Econômico Sedan</option>
+                    <option value="F">F - Intermediário</option>
+                    <option value="FX">FX - Intermediário Automático</option>
+
+                    <option value="GX">GX - SUV Automático</option>
+                    <option value="GC">GC - SUV Compacto Automático</option>
+                    <option value="LE">LE - SUV Especial</option>
+
+                    <option value="NX">NX - Pick-up</option>
+                    <option value="RX">RX - Minivan 7 Lugares</option>
+                    <option value="U">U - Furgão</option>
+                </select>
+
+                <label for="agencia">Agência de Retirada:</label>
+                <select id="agencia" name="agencia_id" required>
+                    <option value="SP_A">São Paulo - Congonhas</option>
+                    <option value="RJ_C">Rio de Janeiro - Copacabana</option>
+                </select>
+
+                <label for="retirada">Data da Retirada:</label>
+                <input type="date" id="retirada" name="data_retirada" required />
+
+                <label for="devolucao">Data da Devolução:</label>
+                <input type="date" id="devolucao" name="data_devolucao" required />
+
+                <button type="submit" class="btn-primary">SIMULAR PREÇO AGORA</button>
+            </form>
+
+            <!-- Coluna Direita: Opções de Carro e Resultado -->
+            <aside class="right-column-content" aria-label="Opções de carros e resultados">
+                <div class="car-options-bar" aria-labelledby="cars-title">
+                    <h3 id="cars-title">Carros Disponíveis</h3>
+
+                    <!-- CE - Econômico Especial -->
+                    <div class="car-card" data-carro-id="1">
+                        <img src="img/car_argo.png" alt="Fiat Argo" class="car-img" />
+                        <h4>Econômico Especial - Fiat Argo</h4>
+                        <p class="preco">R$ 85,00 / dia</p>
+                    </div>
+
+                    <div class="car-card" data-carro-id="3">
+                        <img src="img/car_polo.png" alt="VW Polo" class="car-img" />
+                        <h4>Econômico Especial - VW Polo</h4>
+                        <p class="preco">R$ 85,00 / dia</p>
+                    </div>
+
+                    <!-- FX - Intermediário Automático -->
+                    <div class="car-card" data-carro-id="6">
+                        <img src="img/car_cronos.png" alt="Fiat Cronos" class="car-img" />
+                        <h4>Intermediário Automático - Fiat Cronos</h4>
+                        <p class="preco">R$ 140,00 / dia</p>
+                    </div>
+
+                    <!-- B - Compacto -->
+                    <div class="car-card" data-carro-id="8">
+                        <img src="img/car_kiwd.png" alt="Renault Kwid" class="car-img" />
+                        <h4>Compacto - Renault Kwid</h4>
+                        <p class="preco">R$ 75,00 / dia</p>
+                    </div>
+
+                    <!-- CS - Econômico Sedan -->
+                    <div class="car-card" data-carro-id="10">
+                        <img src="img/car_onix.png" alt="Onix Sedan" class="car-img" />
+                        <h4>Econômico Sedan - GM Onix</h4>
+                        <p class="preco">R$ 95,00 / dia</p>
+                    </div>
+
+                    <!-- NX - Pick-up -->
+                    <div class="car-card" data-carro-id="11">
+                        <img src="img/car_toro.png" alt="Fiat Toro" class="car-img" />
+                        <h4>Pick-up - Fiat Toro</h4>
+                        <p class="preco">R$ 210,00 / dia</p>
+                    </div>
+
+                    <!-- GX - SUV Automático -->
+                    <div class="car-card" data-carro-id="13">
+                        <img src="img/car_jeep_renegade.png" alt="Jeep Renegade" class="car-img" />
+                        <h4>SUV Automático - Jeep Renegade</h4>
+                        <p class="preco">R$ 160,00 / dia</p>
+                    </div>
+
+                    <!-- GC - SUV Compacto -->
+                    <div class="car-card" data-carro-id="15">
+                        <img src="img/car_tera.png" alt="VW Tera" class="car-img" />
+                        <h4>SUV Compacto Automático - VW Tera</h4>
+                        <p class="preco">R$ 150,00 / dia</p>
+                    </div>
+
+                    <!-- LE - SUV Especial -->
+                    <div class="car-card" data-carro-id="17">
+                        <img src="img/car_jeep_compass.png" alt="Jeep Compass" class="car-img" />
+                        <h4>SUV Especial - Jeep Compass</h4>
+                        <p class="preco">R$ 220,00 / dia</p>
+                    </div>
+
+                    <!-- RX - Minivan -->
+                    <div class="car-card" data-carro-id="20">
+                        <img src="img/car_spin.png" alt="GM Spin" class="car-img" />
+                        <h4>Minivan 7 Lugares - GM Spin</h4>
+                        <p class="preco">R$ 180,00 / dia</p>
+                    </div>
+
+                    <!-- U - Furgão -->
+                    <div class="car-card" data-carro-id="23">
+                        <img src="img/car_fiorino.png" alt="Fiat Fiorino" class="car-img" />
+                        <h4>Furgão - Fiat Fiorino</h4>
+                        <p class="preco">R$ 200,00 / dia</p>
+                    </div>
+
+
+                </div>
+
+                <div id="resultado" class="resultado-box" style="display:none;" aria-live="polite">
+                    <h3>Resultados da Simulação</h3>
+                    <p><strong>Total de Diárias:</strong> <span id="diarias"></span></p>
+                    <p><strong>Preço Bruto:</strong> R$ <span id="precoBruto"></span></p>
+                    <p><strong>Fator de Ocupação/Demanda:</strong> <span id="fatorDemanda"></span></p>
+                    <hr />
+                    <p class="final-price"><strong>PREÇO FINAL:</strong> R$ <span id="precoFinal"></span></p>
+
+                    <h4>Fatores e Descontos Aplicados:</h4>
+                    <ul id="fatoresLista"></ul>
+
+                    <hr />
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
