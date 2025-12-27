@@ -7,157 +7,410 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header class="main-header">
-        <div class="logo">
-            <span class="logo-text">VOCALIZA</span>
+
+<header class="main-header">
+    <div class="logo">
+        <span class="logo-text">VOCALIZA</span>
+
+        <a href="https://www.localiza.com/brasil/pt-br" target="_blank" rel="noopener noreferrer">
             <img src="img/logo_localiza.png" alt="Logo Localiza" class="logo-image-localiza" />
+        </a>
+
+        <a href="https://www.vocacao.org.br/" target="_blank" rel="noopener noreferrer">
             <img src="img/logo_vocacao.jpg" alt="Logo Vocação" class="logo-image-vocacao" />
-        </div>
-    </header>
+        </a>
+    </div>
+</header>
 
-    <main class="container">
-        <h1 class="section-title">Encontre seu Carro Ideal e Simule o Preço</h1>
+<main class="container">
+    <h1 class="section-title">Encontre seu Carro Ideal e Simule o Preço</h1>
 
-        <div class="content-wrapper">
-            <!-- Coluna Esquerda: Formulário -->
-            <form id="reservaForm" class="booking-form" aria-label="Formulário de simulação de reserva">
-                <h3>Simulação</h3>
+    <div class="content-wrapper">
 
-                <label for="categoria">Categoria</label>
-                <select id="categoria" name="categoria" required>
-                    <option value="">Selecione a categoria</option>
+        <!-- ================= FORMULÁRIO ================= -->
+        <form id="reservaForm" class="booking-form">
+            <h3>Simulação</h3>
 
-                    <option value="CE">CE - Econômico Especial</option>
-                    <option value="B">B - Compacto</option>
-                    <option value="CS">CS - Econômico Sedan</option>
-                    <option value="F">F - Intermediário</option>
-                    <option value="FX">FX - Intermediário Automático</option>
+            <label for="categoria">Categoria</label>
+            <select id="categoria" required>
+                <option value="">Selecione</option>
+                <option value="CE">CE - Econômico Especial</option>
+                <option value="B">B - Compacto</option>
+                <option value="CS">CS - Econômico Sedan</option>
+                <option value="F">F - Intermediário</option>
+                <option value="FX">FX - Intermediário Automático</option>
+                <option value="GX">GX - SUV Automático</option>
+                <option value="GC">GC - SUV Compacto</option>
+                <option value="LE">LE - SUV Especial</option>
+                <option value="NX">NX - Pick-up</option>
+                <option value="RX">RX - Minivan</option>
+                <option value="U">U - Furgão</option>
+            </select>
 
-                    <option value="GX">GX - SUV Automático</option>
-                    <option value="GC">GC - SUV Compacto Automático</option>
-                    <option value="LE">LE - SUV Especial</option>
+            <label for="agencia">Agência</label>
+            <select id="agencia" required>
+                <option value="SP_A">São Paulo - Congonhas</option>
+                <option value="RJ_C">Rio de Janeiro - Copacabana</option>
+            </select>
 
-                    <option value="NX">NX - Pick-up</option>
-                    <option value="RX">RX - Minivan 7 Lugares</option>
-                    <option value="U">U - Furgão</option>
-                </select>
+            <label for="retirada">Retirada</label>
+            <input type="date" id="retirada" required />
 
-                <label for="agencia">Agência de Retirada:</label>
-                <select id="agencia" name="agencia_id" required>
-                    <option value="SP_A">São Paulo - Congonhas</option>
-                    <option value="RJ_C">Rio de Janeiro - Copacabana</option>
-                </select>
+            <label for="devolucao">Devolução</label>
+            <input type="date" id="devolucao" required />
 
-                <label for="retirada">Data da Retirada:</label>
-                <input type="date" id="retirada" name="data_retirada" required />
+            <button type="submit" class="btn-primary">
+                SIMULAR PREÇO
+            </button>
+        </form>
 
-                <label for="devolucao">Data da Devolução:</label>
-                <input type="date" id="devolucao" name="data_devolucao" required />
+        <!-- ================= COLUNA DIREITA ================= -->
+        <aside class="right-column-content">
 
-                <button type="submit" class="btn-primary">SIMULAR PREÇO AGORA</button>
-            </form>
+            <div class="car-options-bar">
+                <h3>Carros Disponíveis</h3>
 
-            <!-- Coluna Direita: Opções de Carro e Resultado -->
-            <aside class="right-column-content" aria-label="Opções de carros e resultados">
-                <div class="car-options-bar" aria-labelledby="cars-title">
-                    <h3 id="cars-title">Carros Disponíveis</h3>
+                <p id="nenhumCarro" class="hidden">
+                    Nenhum carro disponível para os filtros selecionados.
+                </p>
 
-                    <!-- CE - Econômico Especial -->
-                    <div class="car-card" data-carro-id="1">
-                        <img src="img/car_argo.png" alt="Fiat Argo" class="car-img" />
-                        <h4>Econômico Especial - Fiat Argo</h4>
-                        <p class="preco">R$ 85,00 / dia</p>
+                <!-- ===== CARD 1 ===== -->
+                <div class="car-card hidden" data-carro-id="1">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_argo.png" class="car-img" alt="Fiat Argo">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
                     </div>
-
-                    <div class="car-card" data-carro-id="3">
-                        <img src="img/car_polo.png" alt="VW Polo" class="car-img" />
-                        <h4>Econômico Especial - VW Polo</h4>
-                        <p class="preco">R$ 85,00 / dia</p>
-                    </div>
-
-                    <!-- FX - Intermediário Automático -->
-                    <div class="car-card" data-carro-id="6">
-                        <img src="img/car_cronos.png" alt="Fiat Cronos" class="car-img" />
-                        <h4>Intermediário Automático - Fiat Cronos</h4>
-                        <p class="preco">R$ 140,00 / dia</p>
-                    </div>
-
-                    <!-- B - Compacto -->
-                    <div class="car-card" data-carro-id="8">
-                        <img src="img/car_kiwd.png" alt="Renault Kwid" class="car-img" />
-                        <h4>Compacto - Renault Kwid</h4>
-                        <p class="preco">R$ 75,00 / dia</p>
-                    </div>
-
-                    <!-- CS - Econômico Sedan -->
-                    <div class="car-card" data-carro-id="10">
-                        <img src="img/car_onix.png" alt="Onix Sedan" class="car-img" />
-                        <h4>Econômico Sedan - GM Onix</h4>
-                        <p class="preco">R$ 95,00 / dia</p>
-                    </div>
-
-                    <!-- NX - Pick-up -->
-                    <div class="car-card" data-carro-id="11">
-                        <img src="img/car_toro.png" alt="Fiat Toro" class="car-img" />
-                        <h4>Pick-up - Fiat Toro</h4>
-                        <p class="preco">R$ 210,00 / dia</p>
-                    </div>
-
-                    <!-- GX - SUV Automático -->
-                    <div class="car-card" data-carro-id="13">
-                        <img src="img/car_jeep_renegade.png" alt="Jeep Renegade" class="car-img" />
-                        <h4>SUV Automático - Jeep Renegade</h4>
-                        <p class="preco">R$ 160,00 / dia</p>
-                    </div>
-
-                    <!-- GC - SUV Compacto -->
-                    <div class="car-card" data-carro-id="15">
-                        <img src="img/car_tera.png" alt="VW Tera" class="car-img" />
-                        <h4>SUV Compacto Automático - VW Tera</h4>
-                        <p class="preco">R$ 150,00 / dia</p>
-                    </div>
-
-                    <!-- LE - SUV Especial -->
-                    <div class="car-card" data-carro-id="17">
-                        <img src="img/car_jeep_compass.png" alt="Jeep Compass" class="car-img" />
-                        <h4>SUV Especial - Jeep Compass</h4>
-                        <p class="preco">R$ 220,00 / dia</p>
-                    </div>
-
-                    <!-- RX - Minivan -->
-                    <div class="car-card" data-carro-id="20">
-                        <img src="img/car_spin.png" alt="GM Spin" class="car-img" />
-                        <h4>Minivan 7 Lugares - GM Spin</h4>
-                        <p class="preco">R$ 180,00 / dia</p>
-                    </div>
-
-                    <!-- U - Furgão -->
-                    <div class="car-card" data-carro-id="23">
-                        <img src="img/car_fiorino.png" alt="Fiat Fiorino" class="car-img" />
-                        <h4>Furgão - Fiat Fiorino</h4>
-                        <p class="preco">R$ 200,00 / dia</p>
-                    </div>
-
-
                 </div>
 
-                <div id="resultado" class="resultado-box" style="display:none;" aria-live="polite">
-                    <h3>Resultados da Simulação</h3>
-                    <p><strong>Total de Diárias:</strong> <span id="diarias"></span></p>
-                    <p><strong>Preço Bruto:</strong> R$ <span id="precoBruto"></span></p>
-                    <p><strong>Fator de Ocupação/Demanda:</strong> <span id="fatorDemanda"></span></p>
-                    <hr />
-                    <p class="final-price"><strong>PREÇO FINAL:</strong> R$ <span id="precoFinal"></span></p>
 
-                    <h4>Fatores e Descontos Aplicados:</h4>
-                    <ul id="fatoresLista"></ul>
+                <!-- ===== CARD 2 ===== -->
+                <div class="car-card hidden" data-carro-id="3">
+                    <div class="card-inner">
 
-                    <hr />
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_cronos.png" class="car-img" alt="Fiat Cronos 1.3 AT">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
                 </div>
-            </aside>
-        </div>
-    </main>
 
-    <script src="script.js"></script>
+                <!-- ===== CARD 3 ===== -->
+                <div class="car-card hidden" data-carro-id="5">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_kiwd.png" class="car-img" alt="Renault Kwid 1.0">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ===== CARD 4 ===== -->
+                <div class="car-card hidden" data-carro-id="2">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_polo.png" class="car-img" alt="VW Polo 1.0">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="car-card hidden" data-carro-id="5">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_onix.png" class="car-img" alt="Onix Plus 1.0 Turbo AT">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="car-card hidden" data-carro-id="10">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_jeep_compass.png" class="car-img" alt="Jeep Compass 1.3 Turbo">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="car-card hidden" data-carro-id="8">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_jeep_renegade.png" class="car-img" alt="Jeep Renegade 1.3">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="car-card hidden" data-carro-id="11">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_spin.png" class="car-img" alt="GM Spin 1.8 (7 lugares)">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="car-card hidden" data-carro-id="9">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_tera.png" class="car-img" alt="VW Tera 1.0 AT">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="car-card hidden" data-carro-id="7">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_toro.png" class="car-img" alt="Fiat Toro 1.3 Turbo">
+                            <h4 class="categoria"></h4>
+                            <p class="modelo"></p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="car-card hidden" data-carro-id="12">
+                    <div class="card-inner">
+
+                        <!-- FRENTE -->
+                        <div class="card-face card-front">
+                            <img src="img/car_fiorino.png" class="car-img" alt="Fiat Fiorino 1.4">
+                            <h4 class="categoria-carro"></h4>
+                            <p class="modelo-carro"></p>
+
+                            <button class="btn-detalhes">Ver detalhes</button>
+                        </div>
+
+                        <!-- VERSO -->
+                        <div class="card-face card-back">
+                            <h4>Detalhes da Reserva</h4>
+
+                            <p class="preco">R$ -- / dia</p>
+                            <p class="diarias">Diárias: --</p>
+                            <p class="preco-final">Total: R$ --</p>
+
+                            <button class="btn-voltar" aria-label="Voltar">⟲</button>
+
+                            <button class="btn-alugar">Alugar este carro</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            <!-- ================= RESULTADO ================= -->
+            <div id="resultado" class="resultado-box" style="display:none;">
+                <h3>Resultado da Simulação</h3>
+
+                <p><strong>Diárias:</strong> <span id="diarias"></span></p>
+                <p><strong>Preço bruto:</strong> R$ <span id="precoBruto"></span></p>
+
+                <p class="final-price">
+                    PREÇO FINAL: R$ <span id="precoFinal"></span>
+                </p>
+
+                <h4>Fatores aplicados:</h4>
+                <ul id="fatoresLista"></ul>
+            </div>
+
+        </aside>
+    </div>
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>
+

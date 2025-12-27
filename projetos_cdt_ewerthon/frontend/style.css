@@ -3,7 +3,7 @@
 /* 1. Reset Básico e Fundo */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f1ebeb;
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -24,6 +24,8 @@ body {
     font-size: 1.8em;
     font-weight: bold;
     letter-spacing: 1px;
+    position: relative;
+    left: 30px;
 }
 
 .main-header nav a {
@@ -47,7 +49,7 @@ body {
 }
 
 .section-title {
-    color: #333;
+    color: #003366;
     text-align: center;
     margin-bottom: 30px;
     font-size: 2em;
@@ -126,7 +128,7 @@ input[type="date"], select {
 
 /* Botão Primário (Laranja de Ação) */
 .btn-primary {
-    background-color: #02096d; 
+    background-color: #49f339; 
     color: white;
     padding: 14px 20px;
     border: none;
@@ -137,7 +139,7 @@ input[type="date"], select {
     font-weight: bold;
     margin-top: 30px;
 }
-.btn-primary:hover { background-color: #1b6d02; }
+.btn-primary:hover { background-color: #003366; }
 
 /* 6. Car Cards (Visualização de Carros) */
 .car-options-bar {
@@ -146,7 +148,7 @@ input[type="date"], select {
     justify-content: flex-start;
     gap: 25px;
     padding: 25px 30px;
-    background-color: #fff;
+    background-color: #49f339;
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
     margin-bottom: 20px;
@@ -185,7 +187,7 @@ input[type="date"], select {
 .car-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-    border-color: #1a6d05;
+    border-color: #003366;
 }
 
 /* Quando selecionado */
@@ -353,6 +355,146 @@ input[type="date"], select {
     display: none;
 }
 
+.hidden {
+    display: none;
+}
+
+/* ================= FLIP CARD DEFINITIVO ================= */
+
+.car-card {
+    perspective: 1200px;
+    min-height: 320px; /* <<< ESSENCIAL */
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%; /* <<< ESSENCIAL */
+    transition: transform 0.7s ease;
+    transform-style: preserve-3d;
+}
+
+/* Ativa o flip */
+.car-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Faces */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%; /* <<< ESSENCIAL */
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    padding: 18px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Frente */
+.card-front {
+    background-color: #ffffff;
+}
+
+/* Verso */
+.card-back {
+    background-color: #fff6f1;
+    transform: rotateY(180deg);
+    text-align: center;
+}
+
+/* Preço */
+.card-back .preco {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+/* Botão */
+.card-back .btn-alugar {
+    margin-top: auto;
+}
+
+/* Botão Ver Detalhes */
+.btn-detalhes {
+    margin-top: auto;
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-alugar {
+    margin-top: 10px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.25s ease;
+}
+
+.btn-detalhes:hover {
+    background-color: #002244;
+}
+
+/* Infos no verso */
+.card-back p {
+    font-size: 1em;
+    margin: 6px 0;
+}
+
+.card-back .preco-final {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #d9534f;
+    margin-top: 10px;
+}
+
+/* Espaçamento melhor no verso */
+.btn-voltar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    width: 36px;
+    height: 36px;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    color: #003366; /* força a cor da seta */
+
+    opacity: 1; /* garante visibilidade */
+
+    z-index: 10;
+
+    transition: transform 0.25s ease;
+}
+
+.btn-voltar:hover {
+    transform: rotate(-180deg) scale(1.1);
+}
 
 
 /* Tablet 2 colunas */
